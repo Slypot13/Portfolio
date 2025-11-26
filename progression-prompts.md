@@ -84,7 +84,7 @@ Organiser le HTML en blocs indépendants.
 
 🖼 Capture d’écran
 
-![Écran de chargement](assets/images/etape1-loading.png)
+![Portfolio](assets/images/etape2-portfolio.png)
 
 
 =====================================================================
@@ -121,7 +121,7 @@ Structuration du fichier CSS en sections logiques.
 Utilisation de variables CSS pour garder une cohérence visuelle.
 
 🖼 Capture
-assets/images/etape2-css.png
+![Amelioration](assets/images/etape3.png)
 
 =====================================================================
 
@@ -155,7 +155,7 @@ Eviter que les effets deviennent trop lourds visuellement.
 Limiter certains effets pour garder une bonne UX.
 
 🖼 Capture
-assets/images/etape3-animations.png
+![Interations](assets/images/etape3.png)
 
 =====================================================================
 
@@ -185,37 +185,10 @@ Perte de FPS sur très petits écrans.
 Ajustement dynamique du nombre de lignes/étoiles.
 
 🖼 Capture
-assets/images/etape4-canvas.png
+![Canvas](assets/images/etape4.png)
 
 =====================================================================
 
-###  ⚡ Étape 5 — Recommencer pour faire une version “AAA”
-
-## 💬 Prompt utilisé
-
-ok on repart de zero, est ce que tu peux suivre les consignes du prof que je t'ai envoye au tout debut mais la on refait un deuxieme mais un truc de fou donc animation d'entrée quand ca se lancer, un fond canva de fou et ajoute pleisn d'animations quand tu passe la souris sur des bulles des sections des trucs qui bougent, qui s'aggrandisse, ect,.. un site qui couterai 100 000euro a faire
-# 📥 Résultat obtenu
-Nouveau design beaucoup plus premium.
-
-Canvas 3D de fond encore plus dynamique.
-
-Animations avancées combinées (tilt, bubble, magnets).
-
-# ⚙ Choix techniques
-Structurer le JS en fonctions claires initXxx().
-
-Prévoir toutes les interactions avant d’écrire le HTML.
-
-# ⚠ Difficultés
-Gérer tous les effets sans perdre en lisibilité.
-
-# ✅ Solutions
-Modularisation du script.
-
-🖼 Capture
-assets/images/etape5-premium.png
-
-=====================================================================
 
 ###  🔥 Étape 6 — Demande d’un écran de chargement professionnel
 
@@ -247,6 +220,7 @@ Synchroniser intro + chargement réel.
 Désactivation automatique après X secondes + bouton manuel.
 
 🖼 Capture
-assets/images/etape6-loader.png
+
+![Écran de chargement](assets/images/etape1-loading.png)
 
 =====================================================================

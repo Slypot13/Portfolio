@@ -114,7 +114,7 @@ function initIntroCanvas() {
   requestAnimationFrame(draw);
 }
 
-/* ========= Canvas : champ de force 3D + étoiles ========= */
+/* ========= Canvas : champ de force 3D + étoiles + étoiles filantes ========= */
 function initCanvasBackground() {
   const canvas = $("#bgCanvas");
   if (!canvas) return;
@@ -127,7 +127,7 @@ function initCanvasBackground() {
   resize();
   window.addEventListener("resize", resize);
 
-  // Étoiles
+  // Étoiles fixes / scintillantes
   const STAR_COUNT = 120;
   const stars = [];
   function createStars() {
@@ -171,17 +171,106 @@ function initCanvasBackground() {
     parallaxY = y * 60;
   });
 
+  /* ========= Étoiles filantes (NOUVEAU) ========= */
+  const SHOOTING_MAX = 4;      // maximum d’étoiles filantes simultanées
+  const shootingStars = [];
+
+  function spawnShootingStar() {
+    if (shootingStars.length >= SHOOTING_MAX) return;
+
+    // Une étoile filante part un peu en dehors de l'écran
+    const fromLeft = Math.random() > 0.5;
+
+    const startX = fromLeft ? -50 : canvas.width + 50;
+    const startY = Math.random() * (canvas.height * 0.4); // plutôt vers le haut
+    const angle = fromLeft
+      ? (Math.PI / 4) + Math.random() * 0.2          // diagonale vers le bas/droite
+      : (3 * Math.PI) / 4 - Math.random() * 0.2;    // diagonale vers le bas/gauche
+
+    const speed = 700 + Math.random() * 300;        // px / seconde
+    const length = 120 + Math.random() * 80;        // longueur de la traînée
+    const life = 0.7 + Math.random() * 0.6;         // durée en secondes
+
+    shootingStars.push({
+      x: startX,
+      y: startY,
+      vx: Math.cos(angle) * speed,
+      vy: Math.sin(angle) * speed,
+      length,
+      life,
+      age: 0,
+      hue: 200 + Math.random() * 80
+    });
+  }
+
+  function updateAndDrawShooting(deltaSeconds) {
+    // Petite probabilité de spawn à chaque frame
+    if (Math.random() < 0.02) {
+      spawnShootingStar();
+    }
+
+    for (let i = shootingStars.length - 1; i >= 0; i--) {
+      const s = shootingStars[i];
+      s.age += deltaSeconds;
+
+      // Mise à jour de la position
+      s.x += s.vx * deltaSeconds;
+      s.y += s.vy * deltaSeconds;
+
+      const progress = s.age / s.life;
+      if (progress >= 1) {
+        shootingStars.splice(i, 1);
+        continue;
+      }
+
+      const alpha = (1 - progress) * 0.9;
+
+      // Point de fin (tête de l'étoile)
+      const ex = s.x;
+      const ey = s.y;
+      // Point de départ (queue de la traînée)
+      const sx = ex - (s.vx / Math.hypot(s.vx, s.vy)) * s.length;
+      const sy = ey - (s.vy / Math.hypot(s.vx, s.vy)) * s.length;
+
+      const grad = ctx.createLinearGradient(sx, sy, ex, ey);
+      grad.addColorStop(0, `hsla(${s.hue}, 80%, 65%, 0)`);
+      grad.addColorStop(0.3, `hsla(${s.hue}, 80%, 70%, ${alpha * 0.3})`);
+      grad.addColorStop(1, `hsla(${s.hue}, 90%, 80%, ${alpha})`);
+
+      ctx.strokeStyle = grad;
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      ctx.moveTo(sx, sy);
+      ctx.lineTo(ex, ey);
+      ctx.stroke();
+
+      // Petite tête brillante
+      ctx.fillStyle = `hsla(${s.hue}, 100%, 90%, ${alpha})`;
+      ctx.beginPath();
+      ctx.arc(ex, ey, 2.5, 0, Math.PI * 2);
+      ctx.fill();
+    }
+  }
+
+  /* ========= Boucle d'animation ========= */
+  let lastTime = performance.now();
+
   function drawFrame(time) {
     const w = canvas.width;
     const h = canvas.height;
     const t = time * 0.001;
 
+    const deltaSeconds = (time - lastTime) / 1000;
+    lastTime = time;
+
+    // Fond dégradé
     const bg = ctx.createLinearGradient(0, 0, w, h);
     bg.addColorStop(0, "#020617");
     bg.addColorStop(1, "#050016");
     ctx.fillStyle = bg;
     ctx.fillRect(0, 0, w, h);
 
+    // Étoiles scintillantes
     stars.forEach((s) => {
       const twinkle =
         0.4 + 0.6 * (0.5 + 0.5 * Math.sin(t * s.speed + s.phase));
@@ -197,6 +286,7 @@ function initCanvasBackground() {
     const cx = w / 2 + parallaxX * 0.35;
     const cy = h / 2 + parallaxY * 0.35;
 
+    // Champ de force
     ctx.save();
     ctx.globalCompositeOperation = "lighter";
     ctx.lineWidth = 1.1;
@@ -236,6 +326,9 @@ function initCanvasBackground() {
     });
 
     ctx.restore();
+
+    // Étoiles filantes (après le champ de force, pour qu’elles soient bien visibles)
+    updateAndDrawShooting(deltaSeconds);
 
     requestAnimationFrame(drawFrame);
   }
@@ -471,7 +564,7 @@ function initStoryMode() {
   const data = [
     {
       title: "Débuts",
-      text: "Je découvre le développement web et les bases de HTML, CSS et JavaScript.",
+      text: "Apres l'obtention de mon Bac Général, je découvre le développement web et les bases de HTML, CSS et JavaScript.",
       highlights: [
         "Compréhension de la structure d'une page web.",
         "Premières pages statiques en HTML/CSS.",
@@ -480,20 +573,20 @@ function initStoryMode() {
     },
     {
       title: "Premiers projets",
-      text: "Je réalise des petits projets concrets pour appliquer ce que j'apprends.",
+      text: "Des les premieres semaines à Aix-Ynov Campus, je réalise des petits projets concrets pour appliquer ce que j'apprends. Comme le Projet Red dispobile sur Github",
       highlights: [
         "Création de mini-sites vitrines.",
-        "Utilisation de Flexbox et Grid pour le layout.",
-        "Premiers scripts JavaScript pour manipuler le DOM."
+        "Premier Projet de jeu.",
+        "Premiers scripts JavaScript."
       ]
     },
     {
-      title: "Focus front-end",
-      text: "Je me spécialise sur l'expérience utilisateur, les animations et les micro-interactions.",
+      title: "Focus",
+      text: "je programme dans un peu de tout, mai j'ai un penchant vers le developpement web , les animations et les micro-interactions.",
       highlights: [
         "Canvas animé et effets de fond personnalisés.",
         "Animations CSS et JS (hover, scroll, carrousel).",
-        "Organisation du code et structuration d'un projet front."
+        "Organisation du code et structuration d'un projet ."
       ]
     },
     {
@@ -501,8 +594,8 @@ function initStoryMode() {
       text: "Continuer à monter en compétences et travailler sur des projets réels.",
       highlights: [
         "Rejoindre une équipe en stage / alternance.",
-        "Participer à des projets UI/UX animés.",
-        "Apprendre des frameworks (ex: React) après avoir solidifié les bases."
+        "Participer à des projets.",
+        "Perserverer et lancer des projets personnel."
       ]
     }
   ];
@@ -792,6 +885,86 @@ function initNavScrollSpy() {
   window.addEventListener("scroll", update);
   update();
 }
+function initMiniGame() {
+  const grid = document.querySelectorAll(".mini-cell");
+  const scoreSpan = document.getElementById("mg-score");
+  const timeSpan = document.getElementById("mg-time");
+  const startBtn = document.getElementById("mg-start");
+  const message = document.getElementById("mg-message");
+
+  if (!grid.length || !scoreSpan || !timeSpan || !startBtn || !message) return;
+
+  let score = 0;
+  let timeLeft = 20;
+  let activeIndex = null;
+  let gameInterval = null;
+  let timeInterval = null;
+  let playing = false;
+
+  function setRandomCell() {
+    if (activeIndex !== null) {
+      grid[activeIndex].classList.remove("active");
+    }
+    const idx = Math.floor(Math.random() * grid.length);
+    activeIndex = idx;
+    grid[idx].classList.add("active");
+  }
+
+  function startGame() {
+    if (playing) return;
+    playing = true;
+    score = 0;
+    timeLeft = 20;
+    scoreSpan.textContent = score;
+    timeSpan.textContent = timeLeft;
+    message.textContent = "";
+    startBtn.disabled = true;
+
+    setRandomCell();
+
+    gameInterval = setInterval(setRandomCell, 800);
+    timeInterval = setInterval(() => {
+      timeLeft--;
+      timeSpan.textContent = timeLeft;
+      if (timeLeft <= 0) endGame();
+    }, 1000);
+  }
+
+  function endGame() {
+    playing = false;
+    startBtn.disabled = false;
+    clearInterval(gameInterval);
+    clearInterval(timeInterval);
+    if (activeIndex !== null) {
+      grid[activeIndex].classList.remove("active");
+      activeIndex = null;
+    }
+    if (score >= 10) {
+      message.textContent = `Bien joué ! ${score} points 🎉`;
+    } else {
+      message.textContent = `Seulement ${score} points… tu peux faire mieux 😉`;
+    }
+  }
+
+  grid.forEach((cell, index) => {
+    cell.addEventListener("click", () => {
+      if (!playing) return;
+      if (index === activeIndex) {
+        score++;
+        scoreSpan.textContent = score;
+        setRandomCell();
+      } else {
+        score = Math.max(0, score - 1);
+        scoreSpan.textContent = score;
+        cell.classList.add("wrong");
+        setTimeout(() => cell.classList.remove("wrong"), 150);
+      }
+    });
+  });
+
+  startBtn.addEventListener("click", startGame);
+}
+
 
 /* ========= DOMContentLoaded ========= */
 document.addEventListener("DOMContentLoaded", () => {
@@ -816,4 +989,5 @@ document.addEventListener("DOMContentLoaded", () => {
   initMagneticButtons();
   initButtonRipple();
   initNavScrollSpy();
+  initMiniGame();
 });

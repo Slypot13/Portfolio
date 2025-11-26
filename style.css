@@ -630,36 +630,53 @@ body.light .site-header {
   font-size: 0.8rem;
 }
 
-/* BUTTONS */
+/* ===================== BUTTONS ===================== */
+
 .btn-primary,
-.btn-ghost {
+.btn-ghost,
+.btn-cv {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   border-radius: 999px;
   padding: 0.65rem 1.4rem;
   font-size: 0.9rem;
-  border: none;
   cursor: pointer;
   text-decoration: none;
   position: relative;
   overflow: hidden;
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    border-color 0.25s ease;
 }
 
+/* ----- Bouton principal (violet) ----- */
 .btn-primary {
   background: linear-gradient(135deg, var(--accent), var(--accent-2));
   color: #fff;
   box-shadow: var(--shadow-soft);
+  border: none;
 }
 
+/* ----- Bouton ghost (transparent) ----- */
 .btn-ghost {
   background: transparent;
   border: 1px solid var(--border-soft);
   color: var(--text-main);
 }
 
+/* ----- Bouton CV (transparent, même style que ghost) ----- */
+.btn-cv {
+  background: transparent;
+  border: 1px solid var(--border-soft);
+  color: var(--text-main);
+}
+
+/* ----- Effet glossy sur tous les boutons ----- */
 .btn-primary::before,
-.btn-ghost::before {
+.btn-ghost::before,
+.btn-cv::before {
   content: "";
   position: absolute;
   inset: 0;
@@ -675,11 +692,22 @@ body.light .site-header {
     transform 0.25s ease;
 }
 
+/* ----- Hover ----- */
 .btn-primary:hover::before,
-.btn-ghost:hover::before {
+.btn-ghost:hover::before,
+.btn-cv:hover::before {
   opacity: 1;
   transform: translate3d(0, 0, 0);
 }
+
+.btn-primary:hover,
+.btn-ghost:hover,
+.btn-cv:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-soft);
+  border-color: var(--accent);
+}
+
 
 /* Effet ripple */
 .btn-ripple-circle {
@@ -1446,4 +1474,55 @@ select:focus {
     left: 0.9rem;
     bottom: 4rem;
   }
+}
+.mini-game-card {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  border-radius: 16px;
+  background: rgba(15, 23, 42, 0.9);
+  border: 1px solid rgba(148, 163, 184, 0.4);
+}
+
+.mini-grid {
+  margin: 1rem auto 0.75rem;
+  display: grid;
+  grid-template-columns: repeat(3, 60px);
+  grid-template-rows: repeat(3, 60px);
+  gap: 8px;
+}
+
+.mini-cell {
+  width: 60px;
+  height: 60px;
+  border-radius: 10px;
+  background: rgba(15, 23, 42, 0.9);
+  border: 1px solid rgba(148, 163, 184, 0.6);
+  cursor: pointer;
+  transition: transform 0.1s ease, background 0.15s ease;
+}
+
+.mini-cell:hover {
+  transform: translateY(-2px);
+}
+
+.mini-cell.active {
+  background: #22c55e;
+  box-shadow: 0 0 14px rgba(34, 197, 94, 0.7);
+}
+
+.mini-cell.wrong {
+  background: #dc2626;
+}
+
+.mini-game-info {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.9rem;
+  margin-top: 0.5rem;
+}
+
+.mini-game-message {
+  font-size: 0.9rem;
+  min-height: 1.2rem;
+  margin-top: 0.5rem;
 }

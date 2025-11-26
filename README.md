@@ -1,3 +1,13 @@
+#### ⚙️ Installation & Lancement
+🔹 Option 1 : Ouvrir directement
+Télécharge le projet.
+Double-clique sur index.html.
+La page s'ouvre dans ton navigateur.
+🔹 Option 2 : Avec Visual Studio Code
+Ouvre le dossier dans VS Code.
+Installe l’extension Live Server.
+Clic droit sur index.html → “Open with Live Server”.
+
 # Portfolio – Motion Web Dev
 
 ## 1. Présentation du projet
