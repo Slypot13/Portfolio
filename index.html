@@ -3,73 +3,148 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Mon Portfolio – Expériences & Projets</title>
+  <title>Portfolio – Motion Web Dev</title>
 
-  <!-- Google Fonts -->
+  <!-- Google Font -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
 
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  <!-- Canvas de fond ultra animé -->
+  <canvas id="bgCanvas"></canvas>
+
   <!-- Curseur custom -->
   <div id="cursor"></div>
 
-  <!-- Loader -->
+  <!-- Overlay d'intro ultra animé -->
+  <div id="introOverlay">
+    <!-- Canvas spécifique pour le chargement -->
+    <canvas id="introCanvas"></canvas>
+
+    <div class="intro-bg-orbit"></div>
+    <div class="intro-bg-orbit intro-bg-orbit-2"></div>
+
+    <div class="intro-inner">
+      <div class="intro-logo-orbit">
+        <span class="intro-logo">M</span>
+        <span class="intro-ring"></span>
+      </div>
+
+      <p class="intro-label">Portfolio Motion Dev</p>
+      <h1 class="intro-title">Lancement de l'expérience</h1>
+      <p class="intro-sub">
+        Initialisation du canvas, configuration des animations et des micro-interactions...
+      </p>
+
+      <div class="intro-progress">
+        <div class="intro-progress-bar"></div>
+      </div>
+
+      <button id="introSkipBtn" class="btn-primary intro-btn">
+        Entrer maintenant
+      </button>
+    </div>
+  </div>
+
+  <!-- Loader (bandeau bas) -->
   <div id="loader">
     <div class="loader-inner">
       <div class="loader-orbit"></div>
-      <div class="loader-logo">M</div>
-      <p>Chargement du portfolio...</p>
+      <p>Initialisation de l'interface...</p>
     </div>
   </div>
 
   <!-- Barre de progression du scroll -->
   <div id="scrollProgress"></div>
 
-  <!-- Bouton thème clair/sombre -->
-  <button class="theme-toggle" id="themeToggle" aria-label="Changer le thème">
-    🌙
+  <!-- Bouton de thème -->
+  <button class="theme-toggle" id="themeToggle" aria-label="Changer de thème">🌙</button>
+
+  <!-- Bouton paramètres + panneau -->
+  <button
+    id="settingsToggle"
+    class="settings-toggle"
+    aria-label="Paramètres d'affichage"
+  >
+    ⚙
   </button>
 
-  <!-- Effets d'arrière-plan -->
-  <div class="background-orbit"></div>
-  <div class="background-gradient"></div>
-  <div class="background-blur blur-1"></div>
-  <div class="background-blur blur-2"></div>
+  <div id="settingsPanel" class="settings-panel">
+    <h3>Paramètres</h3>
 
+    <div class="settings-group">
+      <p class="settings-title">Palette d'accent</p>
+      <div class="settings-accents">
+        <button
+          class="accent-swatch active"
+          data-accent="indigo"
+          aria-label="Palette indigo"
+        >
+          <span class="accent-dot accent-indigo"></span>
+        </button>
+        <button
+          class="accent-swatch"
+          data-accent="teal"
+          aria-label="Palette teal"
+        >
+          <span class="accent-dot accent-teal"></span>
+        </button>
+        <button
+          class="accent-swatch"
+          data-accent="sunset"
+          aria-label="Palette sunset"
+        >
+          <span class="accent-dot accent-sunset"></span>
+        </button>
+      </div>
+    </div>
+
+    <div class="settings-group">
+      <label class="settings-switch">
+        <input type="checkbox" id="reduceMotionToggle" />
+        <span class="settings-slider"></span>
+        <span class="settings-label">Réduire les animations</span>
+      </label>
+    </div>
+  </div>
+
+  <!-- Header -->
   <header class="site-header">
     <div class="container header-content">
-      <div class="site-title">
-        <span class="logo-circle">M</span>
-        <div>
-          <h1>Mon Portfolio</h1>
-          <p>Développeur Web • Frontend</p>
+      <div class="brand">
+        <span class="brand-logo">M</span>
+        <div class="brand-text">
+          <span class="brand-name">Motion Dev</span>
+          <span class="brand-role">Front-End & UI Animations</span>
         </div>
       </div>
-
       <nav class="site-nav">
         <a href="#hero">Accueil</a>
         <a href="#about">À propos</a>
         <a href="#skills">Compétences</a>
-        <a href="#experience">Parcours</a>
+        <a href="#story">Story</a>
         <a href="#projects">Projets</a>
         <a href="#contact">Contact</a>
       </nav>
-
-      <a href="#contact" class="nav-cta btn-magnetic">Me contacter</a>
+      <a href="#contact" class="nav-cta btn-primary btn-magnetic">Travailler ensemble</a>
     </div>
   </header>
 
   <main>
     <!-- HERO -->
-    <section id="hero" class="hero reveal" data-stagger>
+    <section id="hero" class="section hero reveal" data-stagger>
       <div class="container hero-grid">
-        <div class="hero-text">
-          <p class="hero-tag">🎯 Disponible pour stage / alternance</p>
+        <div class="hero-left">
+          <p class="hero-kicker">Développeur web créatif</p>
           <h2>
-            Je crée des interfaces <span class="accent">dynamiques</span> et
+            Je conçois des expériences web
+            <span class="accent">animées</span> et
             <span class="accent">immersives</span>.
           </h2>
           <p class="hero-subtitle">
@@ -78,177 +153,164 @@
 
           <div class="hero-actions">
             <a href="#projects" class="btn-primary btn-magnetic">Voir mes projets</a>
-            <a href="#skills" class="btn-ghost btn-magnetic">Découvrir mes compétences</a>
+            <a href="#about" class="btn-ghost btn-magnetic">En savoir plus</a>
           </div>
 
           <div class="hero-stats">
-            <div class="stat-card tilt-card">
-              <span class="stat-number">+10</span>
+            <div class="stat-card tilt-card bubble-hover">
               <span class="stat-label">Projets réalisés</span>
+              <span class="stat-value">+15</span>
             </div>
-            <div class="stat-card tilt-card">
-              <span class="stat-number">+3</span>
-              <span class="stat-label">Technos principales</span>
+            <div class="stat-card tilt-card bubble-hover">
+              <span class="stat-label">Années d'apprentissage</span>
+              <span class="stat-value">2</span>
             </div>
-            <div class="stat-card tilt-card">
-              <span class="stat-number">100%</span>
-              <span class="stat-label">Motivation</span>
+            <div class="stat-card tilt-card bubble-hover">
+              <span class="stat-label">Focus</span>
+              <span class="stat-value">Front-End</span>
             </div>
           </div>
         </div>
 
-        <div class="hero-visual">
-          <div class="hero-card tilt-card">
-            <p class="hero-card-title">Stack actuelle</p>
-            <ul>
-              <li>HTML5 • CSS3 (Flex, Grid, Animations)</li>
-              <li>JavaScript (DOM, Events, localStorage)</li>
-              <li>Visual Studio Code, Git</li>
-            </ul>
-          </div>
-
-          <div class="hero-pill pill-top floating-delayed">
-            <span>🎨 UI propre & animée</span>
-          </div>
-          <div class="hero-pill pill-bottom floating-slow">
-            <span>⚡ Expériences interactives</span>
+        <div class="hero-right">
+          <div class="hero-orbit">
+            <div class="hero-card tilt-card">
+              <p class="hero-card-title">Stack principale</p>
+              <ul>
+                <li>HTML5 sémantique</li>
+                <li>CSS3 avancé (Grid, Animations)</li>
+                <li>JavaScript (DOM, Canvas, localStorage)</li>
+              </ul>
+            </div>
+            <div class="hero-badge hero-badge-top bubble-hover">
+              🎨 Micro-interactions
+            </div>
+            <div class="hero-badge hero-badge-bottom bubble-hover">
+              ⚡ Canvas animé
+            </div>
           </div>
         </div>
       </div>
+
+      <!-- Indicateur scroll -->
+      <div class="scroll-indicator">
+        <div class="scroll-mouse"><span></span></div>
+        <p>Scroll</p>
+      </div>
     </section>
 
-    <!-- Compteur de visites -->
-    <section class="visit-counter">
+    <!-- Compteur visites -->
+    <section class="visit-strip">
       <div class="container">
-        <p>Nombre de visites sur ce navigateur : <span id="visitCount">0/span></p>
+        <p>
+          Visites sur ce navigateur :
+          <span id="visitCount">0</span>
+        </p>
       </div>
     </section>
 
     <!-- À propos -->
-    <section id="about" class="section section-alt reveal" data-stagger>
+    <section id="about" class="section reveal" data-stagger>
       <div class="container about-grid">
         <div>
           <h2>À propos</h2>
           <p>
             Je suis un développeur web en formation, passionné par les interfaces modernes,
-            les animations fluides et l’expérience utilisateur. Ce portfolio est un projet complet
-            qui combine design, interactivité et code propre.
+            les animations fluides et les expériences interactives. Ce portfolio est pensé
+            comme une "démo technique" pour montrer ce que je sais faire en front-end.
           </p>
           <p>
-            Mon objectif : progresser sur le front-end, apprendre de nouvelles technologies
-            et travailler sur des projets concrets (stage, alternance, projets perso).
+            L'objectif : maîtriser HTML, CSS et JavaScript, comprendre les bonnes pratiques
+            et être capable de concevoir des interfaces à forte valeur ajoutée visuelle.
           </p>
         </div>
-        <div class="about-card tilt-card">
-          <h3>Infos rapides</h3>
+        <div class="about-panel tilt-card bubble-hover">
+          <h3>Ce que j'aime concevoir</h3>
           <ul>
-            <li>📍 Basé en France</li>
-            <li>📚 Étudiant en informatique</li>
-            <li>💡 Intérêt : Web, UI/UX, animations</li>
-            <li>🤝 Ouvert aux collaborations</li>
+            <li>Interfaces avec canvas animé en fond</li>
+            <li>Micro-interactions survol / clic (hover/ripple)</li>
+            <li>Layouts responsives propres et lisibles</li>
+            <li>Portfolios et landing pages animés</li>
           </ul>
         </div>
       </div>
     </section>
 
     <!-- Compétences -->
-    <section id="skills" class="section reveal" data-stagger>
+    <section id="skills" class="section section-alt reveal" data-stagger>
       <div class="container">
         <h2>Compétences</h2>
         <p class="section-intro">
-          Les barres de niveau se remplissent automatiquement quand tu arrives sur cette section.
+          Les barres se remplissent automatiquement quand tu arrives dans cette section.
         </p>
 
-        <div class="skills-layout">
-          <div class="skills-grid">
-            <div class="skill-card tilt-card">
+        <div class="skills-grid">
+          <div class="skill-card tilt-card bubble-hover">
+            <div class="skill-header">
               <span class="skill-icon">🧱</span>
               <h3>HTML</h3>
-              <p>Structure sémantique, sections, formulaires, accessibilité de base.</p>
-              <div class="skill-bar" data-level="85">
-                <span></span>
-              </div>
             </div>
-            <div class="skill-card tilt-card">
-              <span class="skill-icon">🎨</span>
-              <h3>CSS</h3>
-              <p>Layouts responsives, Grid/Flexbox, animations, glassmorphism.</p>
-              <div class="skill-bar" data-level="80">
-                <span></span>
-              </div>
-            </div>
-            <div class="skill-card tilt-card">
-              <span class="skill-icon">⚙️</span>
-              <h3>JavaScript</h3>
-              <p>DOM, événements, carrousel, filtrage, stockage local.</p>
-              <div class="skill-bar" data-level="70">
-                <span></span>
-              </div>
-            </div>
-            <div class="skill-card tilt-card">
-              <span class="skill-icon">🧰</span>
-              <h3>Outils</h3>
-              <p>VS Code, Git, DevTools navigateur, organisation de projet.</p>
-              <div class="skill-bar" data-level="75">
-                <span></span>
-              </div>
-            </div>
+            <p>Structure sémantique, SEO de base, accessibilité d’entrée de gamme.</p>
+            <div class="skill-bar" data-level="85"><span></span></div>
           </div>
 
-          <div class="skills-panel tilt-card">
-            <h3>Zones d’intérêt</h3>
-            <ul>
-              <li>Animations UX (hover, transitions, micro-interactions)</li>
-              <li>Portfolios, landing pages, sites vitrines modernes</li>
-              <li>Code clair, structuré, facile à expliquer en soutenance</li>
-            </ul>
+          <div class="skill-card tilt-card bubble-hover">
+            <div class="skill-header">
+              <span class="skill-icon">🎨</span>
+              <h3>CSS</h3>
+            </div>
+            <p>Flex, Grid, animations, effets de verre, responsive complet.</p>
+            <div class="skill-bar" data-level="80"><span></span></div>
+          </div>
+
+          <div class="skill-card tilt-card bubble-hover">
+            <div class="skill-header">
+              <span class="skill-icon">⚙️</span>
+              <h3>JavaScript</h3>
+            </div>
+            <p>DOM, événements, carrousel, filtrage, canvas, localStorage.</p>
+            <div class="skill-bar" data-level="75"><span></span></div>
+          </div>
+
+          <div class="skill-card tilt-card bubble-hover">
+            <div class="skill-header">
+              <span class="skill-icon">🧰</span>
+              <h3>Outils</h3>
+            </div>
+            <p>VS Code, Git, DevTools, organisation de projet front-end.</p>
+            <div class="skill-bar" data-level="70"><span></span></div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Parcours / Timeline -->
-    <section id="experience" class="section section-alt reveal" data-stagger>
+    <!-- STORY / PARCOURS -->
+    <section id="story" class="section reveal" data-stagger>
       <div class="container">
-        <h2>Parcours</h2>
+        <h2>Story</h2>
         <p class="section-intro">
-          Une timeline animée qui montre l’évolution de mon apprentissage.
+          Mode "story" : une timeline simple pour présenter mon évolution et mes objectifs.
         </p>
 
-        <div class="timeline">
-          <div class="timeline-item">
-            <div class="timeline-dot"></div>
-            <div class="timeline-content tilt-card">
-              <span class="timeline-date">2023</span>
-              <h3>Début en informatique</h3>
-              <p>
-                Découverte du HTML & CSS, premiers sites statiques, compréhension de la structure
-                d’une page web.
-              </p>
-            </div>
+        <div class="story-grid">
+          <div class="story-steps">
+            <button class="story-step active" data-step="0">Débuts</button>
+            <button class="story-step" data-step="1">Premiers projets</button>
+            <button class="story-step" data-step="2">Focus front-end</button>
+            <button class="story-step" data-step="3">Objectifs</button>
           </div>
 
-          <div class="timeline-item">
-            <div class="timeline-dot"></div>
-            <div class="timeline-content tilt-card">
-              <span class="timeline-date">2024</span>
-              <h3>JavaScript & projets scolaires</h3>
-              <p>
-                Manipulation du DOM, jeux simples, projets dynamiques, événements et logique front-end.
-              </p>
-            </div>
-          </div>
-
-          <div class="timeline-item">
-            <div class="timeline-dot"></div>
-            <div class="timeline-content tilt-card">
-              <span class="timeline-date">2025</span>
-              <h3>Portfolio avancé</h3>
-              <p>
-                Création de ce portfolio animé avec filtrage, carrousel, timeline, formulaire,
-                modal et animations avancées.
-              </p>
-            </div>
+          <div class="story-content tilt-card">
+            <span class="story-tag" id="storyTag">Étape 1/4</span>
+            <h3 id="storyTitle">Débuts</h3>
+            <p id="storyText">
+              Je découvre le développement web et les bases de HTML, CSS et JavaScript.
+            </p>
+            <ul id="storyHighlights" class="story-highlights">
+              <li>Compréhension de la structure d'une page web.</li>
+              <li>Premières pages statiques en HTML/CSS.</li>
+              <li>Découverte des outils (VS Code, navigateur, DevTools).</li>
+            </ul>
           </div>
         </div>
       </div>
@@ -259,10 +321,10 @@
       <div class="container">
         <h2>Projets</h2>
         <p class="section-intro">
-          Clique sur une carte projet : une fenêtre modale s’ouvre avec plus de détails.
+          Filtre les projets par catégorie, puis clique sur une carte pour voir les détails.
         </p>
 
-        <!-- Filtrage des projets -->
+        <!-- Filtres -->
         <div class="project-filters">
           <button class="filter-btn active btn-magnetic" data-filter="all">Tous</button>
           <button class="filter-btn btn-magnetic" data-filter="web">Web</button>
@@ -270,83 +332,78 @@
           <button class="filter-btn btn-magnetic" data-filter="design">Design</button>
         </div>
 
-        <!-- Grille de projets -->
+        <!-- Grille projets -->
         <div class="project-grid">
           <article
-            class="project-card tilt-card"
+            class="project-card tilt-card bubble-hover"
             data-category="web"
-            data-title="Site vitrine"
+            data-title="Site vitrine créatif"
             data-tech="HTML • CSS"
-            data-description="Site vitrine statique pour une entreprise fictive, avec structure claire, sections et CTA."
+            data-description="Site vitrine moderne avec sections, CTA, mise en page responsive et animations au scroll."
             data-link="#"
           >
-            <div class="project-badge">Web</div>
-            <h3>Site vitrine</h3>
-            <p>Site statique en HTML/CSS présentant une entreprise fictive.</p>
+            <span class="project-tag">Web</span>
+            <h3>Site vitrine créatif</h3>
+            <p>Une page vitrine animée pour une marque fictive.</p>
           </article>
 
           <article
-            class="project-card tilt-card"
+            class="project-card tilt-card bubble-hover"
             data-category="js"
-            data-title="Jeu JavaScript"
+            data-title="Jeu en JavaScript"
             data-tech="HTML • CSS • JS"
-            data-description="Mini jeu interactif en JavaScript vanilla avec gestion des scores et de l'état de la partie."
+            data-description="Mini jeu interactif avec gestion de score, messages de victoire et interactions via le DOM."
             data-link="#"
           >
-            <div class="project-badge">JS</div>
-            <h3>Jeu en JavaScript</h3>
-            <p>Mini jeu avec gestion des événements, du score et des messages de victoire.</p>
+            <span class="project-tag">JS</span>
+            <h3>Mini jeu JavaScript</h3>
+            <p>Un projet pour pratiquer les événements et la logique.</p>
           </article>
 
           <article
-            class="project-card tilt-card"
+            class="project-card tilt-card bubble-hover"
             data-category="design"
             data-title="Maquette UI"
-            data-tech="Figma / Design"
-            data-description="Maquette de page d'accueil avec hiérarchie visuelle forte et zones de focus bien définies."
+            data-tech="Design / Figma"
+            data-description="Maquette de page d'accueil avec hiérarchie visuelle, sections structurées et CTA clairs."
             data-link="#"
           >
-            <div class="project-badge">UI</div>
-            <h3>Maquette UI</h3>
-            <p>Maquette de page d'accueil orientée expérience utilisateur.</p>
+            <span class="project-tag">UI</span>
+            <h3>Maquette UI landing page</h3>
+            <p>Conception d'une interface orientée conversion.</p>
           </article>
 
           <article
-            class="project-card tilt-card"
+            class="project-card tilt-card bubble-hover"
             data-category="web"
             data-title="Blog personnel"
             data-tech="HTML • CSS • JS"
-            data-description="Structure de blog avec articles, catégories, navigation, prête pour un futur back-end."
+            data-description="Structure de blog avec articles, catégories, navigation et base pour futurs ajouts."
             data-link="#"
           >
-            <div class="project-badge">Web</div>
+            <span class="project-tag">Web</span>
             <h3>Blog personnel</h3>
-            <p>Blog avec articles, catégories et navigation responsive.</p>
+            <p>Architecture front prête pour un futur back-end.</p>
           </article>
         </div>
 
-        <!-- Carrousel de projets -->
+        <!-- Carrousel -->
         <div class="project-carousel">
           <button class="carousel-btn btn-magnetic" id="prevProject" aria-label="Projet précédent">◀</button>
-
           <div class="carousel-track">
             <div class="carousel-item active">
-              <h3>Portfolio actuel</h3>
-              <p>
-                Ce site : animations, mode sombre/clair, filtrage, carrousel, timeline,
-                modal, curseur custom.
-              </p>
+              <h3>Portfolio animé</h3>
+              <p>Ce site : canvas de fond, animations, micro-interactions, filtrage, carrousel, formulaire, etc.</p>
             </div>
             <div class="carousel-item">
-              <h3>Application To-Do</h3>
-              <p>Liste de tâches interactive avec stockage dans le navigateur.</p>
+              <h3>App To-Do</h3>
+              <p>Application de tâches en JavaScript avec localStorage.</p>
             </div>
             <div class="carousel-item">
-              <h3>Landing page SaaS</h3>
-              <p>Page d’atterrissage responsive pour un faux outil SaaS.</p>
+              <h3>Landing SaaS</h3>
+              <p>Page d'atterrissage responsive avec sections et CTA forts.</p>
             </div>
           </div>
-
           <button class="carousel-btn btn-magnetic" id="nextProject" aria-label="Projet suivant">▶</button>
         </div>
       </div>
@@ -357,7 +414,7 @@
       <div class="modal-backdrop"></div>
       <div class="modal-content tilt-card">
         <button class="modal-close" id="modalCloseBtn" aria-label="Fermer">✕</button>
-        <span class="modal-tag" id="modalTech"></span>
+        <span id="modalTech" class="modal-tech"></span>
         <h3 id="modalTitle"></h3>
         <p id="modalDescription"></p>
         <a
@@ -365,9 +422,9 @@
           href="#"
           target="_blank"
           rel="noopener noreferrer"
-          class="btn-primary modal-link btn-magnetic"
+          class="btn-primary btn-magnetic modal-link"
         >
-          Voir le projet (placeholder)
+          Ouvrir le projet
         </a>
       </div>
     </div>
@@ -377,7 +434,7 @@
       <div class="container">
         <h2>Contact</h2>
         <p class="section-intro">
-          Un projet, une question, une opportunité ? Tu peux m’écrire directement ici.
+          Un stage, une alternance, un projet ou une collaboration ? Tu peux m’écrire directement ici.
         </p>
 
         <form id="contactForm" novalidate>
@@ -399,7 +456,7 @@
             <label for="topic">Sujet</label>
             <select id="topic" name="topic">
               <option value="stage">Stage / alternance</option>
-              <option value="projet">Projet perso</option>
+              <option value="projet">Projet web</option>
               <option value="autre">Autre</option>
             </select>
           </div>
@@ -419,14 +476,12 @@
 
   <footer class="site-footer">
     <div class="container">
-      <p>© <span id="year"></span> Mon Portfolio – Tous droits réservés.</p>
+      <p>© <span id="year"></span> Portfolio Motion Dev – Tous droits réservés.</p>
     </div>
   </footer>
 
-  <!-- Bouton retour en haut -->
-  <button id="scrollTopBtn" class="scroll-top-btn" aria-label="Remonter en haut">
-    ↑
-  </button>
+  <!-- Bouton retour haut -->
+  <button id="scrollTopBtn" class="scroll-top-btn" aria-label="Retour en haut">↑</button>
 
   <script src="script.js"></script>
 </body>
