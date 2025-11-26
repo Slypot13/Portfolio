@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mon Portfolio – Expériences & Projets</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Curseur custom -->
+  <div id="cursor"></div>
+
+  <!-- Loader -->
+  <div id="loader">
+    <div class="loader-inner">
+      <div class="loader-orbit"></div>
+      <div class="loader-logo">M</div>
+      <p>Chargement du portfolio...</p>
+    </div>
+  </div>
+
+  <!-- Barre de progression du scroll -->
+  <div id="scrollProgress"></div>
+
+  <!-- Bouton thème clair/sombre -->
+  <button class="theme-toggle" id="themeToggle" aria-label="Changer le thème">
+    🌙
+  </button>
+
+  <!-- Effets d'arrière-plan -->
+  <div class="background-orbit"></div>
+  <div class="background-gradient"></div>
+  <div class="background-blur blur-1"></div>
+  <div class="background-blur blur-2"></div>
+
+  <header class="site-header">
+    <div class="container header-content">
+      <div class="site-title">
+        <span class="logo-circle">M</span>
+        <div>
+          <h1>Mon Portfolio</h1>
+          <p>Développeur Web • Frontend</p>
+        </div>
+      </div>
+
+      <nav class="site-nav">
+        <a href="#hero">Accueil</a>
+        <a href="#about">À propos</a>
+        <a href="#skills">Compétences</a>
+        <a href="#experience">Parcours</a>
+        <a href="#projects">Projets</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+      <a href="#contact" class="nav-cta btn-magnetic">Me contacter</a>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section id="hero" class="hero reveal" data-stagger>
+      <div class="container hero-grid">
+        <div class="hero-text">
+          <p class="hero-tag">🎯 Disponible pour stage / alternance</p>
+          <h2>
+            Je crée des interfaces <span class="accent">dynamiques</span> et
+            <span class="accent">immersives</span>.
+          </h2>
+          <p class="hero-subtitle">
+            <span id="typewriter"></span><span class="typewriter-cursor">|</span>
+          </p>
+
+          <div class="hero-actions">
+            <a href="#projects" class="btn-primary btn-magnetic">Voir mes projets</a>
+            <a href="#skills" class="btn-ghost btn-magnetic">Découvrir mes compétences</a>
+          </div>
+
+          <div class="hero-stats">
+            <div class="stat-card tilt-card">
+              <span class="stat-number">+10</span>
+              <span class="stat-label">Projets réalisés</span>
+            </div>
+            <div class="stat-card tilt-card">
+              <span class="stat-number">+3</span>
+              <span class="stat-label">Technos principales</span>
+            </div>
+            <div class="stat-card tilt-card">
+              <span class="stat-number">100%</span>
+              <span class="stat-label">Motivation</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-visual">
+          <div class="hero-card tilt-card">
+            <p class="hero-card-title">Stack actuelle</p>
+            <ul>
+              <li>HTML5 • CSS3 (Flex, Grid, Animations)</li>
+              <li>JavaScript (DOM, Events, localStorage)</li>
+              <li>Visual Studio Code, Git</li>
+            </ul>
+          </div>
+
+          <div class="hero-pill pill-top floating-delayed">
+            <span>🎨 UI propre & animée</span>
+          </div>
+          <div class="hero-pill pill-bottom floating-slow">
+            <span>⚡ Expériences interactives</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Compteur de visites -->
+    <section class="visit-counter">
+      <div class="container">
+        <p>Nombre de visites sur ce navigateur : <span id="visitCount">0/span></p>
+      </div>
+    </section>
+
+    <!-- À propos -->
+    <section id="about" class="section section-alt reveal" data-stagger>
+      <div class="container about-grid">
+        <div>
+          <h2>À propos</h2>
+          <p>
+            Je suis un développeur web en formation, passionné par les interfaces modernes,
+            les animations fluides et l’expérience utilisateur. Ce portfolio est un projet complet
+            qui combine design, interactivité et code propre.
+          </p>
+          <p>
+            Mon objectif : progresser sur le front-end, apprendre de nouvelles technologies
+            et travailler sur des projets concrets (stage, alternance, projets perso).
+          </p>
+        </div>
+        <div class="about-card tilt-card">
+          <h3>Infos rapides</h3>
+          <ul>
+            <li>📍 Basé en France</li>
+            <li>📚 Étudiant en informatique</li>
+            <li>💡 Intérêt : Web, UI/UX, animations</li>
+            <li>🤝 Ouvert aux collaborations</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Compétences -->
+    <section id="skills" class="section reveal" data-stagger>
+      <div class="container">
+        <h2>Compétences</h2>
+        <p class="section-intro">
+          Les barres de niveau se remplissent automatiquement quand tu arrives sur cette section.
+        </p>
+
+        <div class="skills-layout">
+          <div class="skills-grid">
+            <div class="skill-card tilt-card">
+              <span class="skill-icon">🧱</span>
+              <h3>HTML</h3>
+              <p>Structure sémantique, sections, formulaires, accessibilité de base.</p>
+              <div class="skill-bar" data-level="85">
+                <span></span>
+              </div>
+            </div>
+            <div class="skill-card tilt-card">
+              <span class="skill-icon">🎨</span>
+              <h3>CSS</h3>
+              <p>Layouts responsives, Grid/Flexbox, animations, glassmorphism.</p>
+              <div class="skill-bar" data-level="80">
+                <span></span>
+              </div>
+            </div>
+            <div class="skill-card tilt-card">
+              <span class="skill-icon">⚙️</span>
+              <h3>JavaScript</h3>
+              <p>DOM, événements, carrousel, filtrage, stockage local.</p>
+              <div class="skill-bar" data-level="70">
+                <span></span>
+              </div>
+            </div>
+            <div class="skill-card tilt-card">
+              <span class="skill-icon">🧰</span>
+              <h3>Outils</h3>
+              <p>VS Code, Git, DevTools navigateur, organisation de projet.</p>
+              <div class="skill-bar" data-level="75">
+                <span></span>
+              </div>
+            </div>
+          </div>
+
+          <div class="skills-panel tilt-card">
+            <h3>Zones d’intérêt</h3>
+            <ul>
+              <li>Animations UX (hover, transitions, micro-interactions)</li>
+              <li>Portfolios, landing pages, sites vitrines modernes</li>
+              <li>Code clair, structuré, facile à expliquer en soutenance</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Parcours / Timeline -->
+    <section id="experience" class="section section-alt reveal" data-stagger>
+      <div class="container">
+        <h2>Parcours</h2>
+        <p class="section-intro">
+          Une timeline animée qui montre l’évolution de mon apprentissage.
+        </p>
+
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content tilt-card">
+              <span class="timeline-date">2023</span>
+              <h3>Début en informatique</h3>
+              <p>
+                Découverte du HTML & CSS, premiers sites statiques, compréhension de la structure
+                d’une page web.
+              </p>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content tilt-card">
+              <span class="timeline-date">2024</span>
+              <h3>JavaScript & projets scolaires</h3>
+              <p>
+                Manipulation du DOM, jeux simples, projets dynamiques, événements et logique front-end.
+              </p>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content tilt-card">
+              <span class="timeline-date">2025</span>
+              <h3>Portfolio avancé</h3>
+              <p>
+                Création de ce portfolio animé avec filtrage, carrousel, timeline, formulaire,
+                modal et animations avancées.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projets -->
+    <section id="projects" class="section reveal" data-stagger>
+      <div class="container">
+        <h2>Projets</h2>
+        <p class="section-intro">
+          Clique sur une carte projet : une fenêtre modale s’ouvre avec plus de détails.
+        </p>
+
+        <!-- Filtrage des projets -->
+        <div class="project-filters">
+          <button class="filter-btn active btn-magnetic" data-filter="all">Tous</button>
+          <button class="filter-btn btn-magnetic" data-filter="web">Web</button>
+          <button class="filter-btn btn-magnetic" data-filter="js">JavaScript</button>
+          <button class="filter-btn btn-magnetic" data-filter="design">Design</button>
+        </div>
+
+        <!-- Grille de projets -->
+        <div class="project-grid">
+          <article
+            class="project-card tilt-card"
+            data-category="web"
+            data-title="Site vitrine"
+            data-tech="HTML • CSS"
+            data-description="Site vitrine statique pour une entreprise fictive, avec structure claire, sections et CTA."
+            data-link="#"
+          >
+            <div class="project-badge">Web</div>
+            <h3>Site vitrine</h3>
+            <p>Site statique en HTML/CSS présentant une entreprise fictive.</p>
+          </article>
+
+          <article
+            class="project-card tilt-card"
+            data-category="js"
+            data-title="Jeu JavaScript"
+            data-tech="HTML • CSS • JS"
+            data-description="Mini jeu interactif en JavaScript vanilla avec gestion des scores et de l'état de la partie."
+            data-link="#"
+          >
+            <div class="project-badge">JS</div>
+            <h3>Jeu en JavaScript</h3>
+            <p>Mini jeu avec gestion des événements, du score et des messages de victoire.</p>
+          </article>
+
+          <article
+            class="project-card tilt-card"
+            data-category="design"
+            data-title="Maquette UI"
+            data-tech="Figma / Design"
+            data-description="Maquette de page d'accueil avec hiérarchie visuelle forte et zones de focus bien définies."
+            data-link="#"
+          >
+            <div class="project-badge">UI</div>
+            <h3>Maquette UI</h3>
+            <p>Maquette de page d'accueil orientée expérience utilisateur.</p>
+          </article>
+
+          <article
+            class="project-card tilt-card"
+            data-category="web"
+            data-title="Blog personnel"
+            data-tech="HTML • CSS • JS"
+            data-description="Structure de blog avec articles, catégories, navigation, prête pour un futur back-end."
+            data-link="#"
+          >
+            <div class="project-badge">Web</div>
+            <h3>Blog personnel</h3>
+            <p>Blog avec articles, catégories et navigation responsive.</p>
+          </article>
+        </div>
+
+        <!-- Carrousel de projets -->
+        <div class="project-carousel">
+          <button class="carousel-btn btn-magnetic" id="prevProject" aria-label="Projet précédent">◀</button>
+
+          <div class="carousel-track">
+            <div class="carousel-item active">
+              <h3>Portfolio actuel</h3>
+              <p>
+                Ce site : animations, mode sombre/clair, filtrage, carrousel, timeline,
+                modal, curseur custom.
+              </p>
+            </div>
+            <div class="carousel-item">
+              <h3>Application To-Do</h3>
+              <p>Liste de tâches interactive avec stockage dans le navigateur.</p>
+            </div>
+            <div class="carousel-item">
+              <h3>Landing page SaaS</h3>
+              <p>Page d’atterrissage responsive pour un faux outil SaaS.</p>
+            </div>
+          </div>
+
+          <button class="carousel-btn btn-magnetic" id="nextProject" aria-label="Projet suivant">▶</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Modal projet -->
+    <div id="projectModal" class="modal">
+      <div class="modal-backdrop"></div>
+      <div class="modal-content tilt-card">
+        <button class="modal-close" id="modalCloseBtn" aria-label="Fermer">✕</button>
+        <span class="modal-tag" id="modalTech"></span>
+        <h3 id="modalTitle"></h3>
+        <p id="modalDescription"></p>
+        <a
+          id="modalLink"
+          href="#"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="btn-primary modal-link btn-magnetic"
+        >
+          Voir le projet (placeholder)
+        </a>
+      </div>
+    </div>
+
+    <!-- Contact -->
+    <section id="contact" class="section section-alt reveal" data-stagger>
+      <div class="container">
+        <h2>Contact</h2>
+        <p class="section-intro">
+          Un projet, une question, une opportunité ? Tu peux m’écrire directement ici.
+        </p>
+
+        <form id="contactForm" novalidate>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="name">Nom</label>
+              <input type="text" id="name" name="name" required />
+              <span class="error-message" id="nameError"></span>
+            </div>
+
+            <div class="form-group">
+              <label for="email">E-mail</label>
+              <input type="email" id="email" name="email" required />
+              <span class="error-message" id="emailError"></span>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="topic">Sujet</label>
+            <select id="topic" name="topic">
+              <option value="stage">Stage / alternance</option>
+              <option value="projet">Projet perso</option>
+              <option value="autre">Autre</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" rows="5" required></textarea>
+            <span class="error-message" id="messageError"></span>
+          </div>
+
+          <button type="submit" class="btn-primary btn-magnetic">Envoyer</button>
+          <p class="form-status" id="formStatus"></p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>© <span id="year"></span> Mon Portfolio – Tous droits réservés.</p>
+    </div>
+  </footer>
+
+  <!-- Bouton retour en haut -->
+  <button id="scrollTopBtn" class="scroll-top-btn" aria-label="Remonter en haut">
+    ↑
+  </button>
+
+  <script src="script.js"></script>
+</body>
+</html>
