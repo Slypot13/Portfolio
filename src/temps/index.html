@@ -1,0 +1,531 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolio – B1 Informatique</title>
+
+  <!-- Google Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Canvas de fond ultra animé -->
+  <canvas id="bgCanvas"></canvas>
+
+  <!-- Curseur custom -->
+  <div id="cursor"></div>
+
+  <!-- Overlay d'intro ultra animé -->
+  <div id="introOverlay">
+    <!-- Canvas spécifique pour le chargement -->
+    <canvas id="introCanvas"></canvas>
+
+    <div class="intro-bg-orbit"></div>
+    <div class="intro-bg-orbit intro-bg-orbit-2"></div>
+
+    <div class="intro-inner">
+      <div class="intro-logo-orbit">
+        <span class="intro-logo">Ynov</span>
+        <span class="intro-ring"></span>
+      </div>
+
+      <p class="intro-label">Portfolio Ynov Dev</p>
+      <h1 class="intro-title">Ouverture du Portfolio</h1>
+      <p class="intro-sub">
+        Initialisation du canvas, configuration des animations et des micro-interactions...
+      </p>
+
+      <div class="intro-progress">
+        <div class="intro-progress-bar"></div>
+      </div>
+
+      <button id="introSkipBtn" class="btn-primary intro-btn">
+        Entrer 
+      </button>
+    </div>
+  </div>
+
+  <!-- Loader (bandeau bas) -->
+  <div id="loader">
+    <div class="loader-inner">
+      <div class="loader-orbit"></div>
+      <p>Initialisation de l'interface...</p>
+    </div>
+  </div>
+
+  <!-- Barre de progression du scroll -->
+  <div id="scrollProgress"></div>
+
+  <!-- Bouton de thème -->
+  <button class="theme-toggle" id="themeToggle" aria-label="Changer de thème">🌙</button>
+
+  <!-- Bouton paramètres + panneau -->
+  <button
+    id="settingsToggle"
+    class="settings-toggle"
+    aria-label="Paramètres d'affichage"
+  >
+    ⚙
+  </button>
+
+  <div id="settingsPanel" class="settings-panel">
+    <h3>Paramètres</h3>
+
+    <div class="settings-group">
+      <p class="settings-title">Palette d'accent</p>
+      <div class="settings-accents">
+        <button
+          class="accent-swatch active"
+          data-accent="indigo"
+          aria-label="Palette indigo"
+        >
+          <span class="accent-dot accent-indigo"></span>
+        </button>
+        <button
+          class="accent-swatch"
+          data-accent="teal"
+          aria-label="Palette teal"
+        >
+          <span class="accent-dot accent-teal"></span>
+        </button>
+        <button
+          class="accent-swatch"
+          data-accent="sunset"
+          aria-label="Palette sunset"
+        >
+          <span class="accent-dot accent-sunset"></span>
+        </button>
+      </div>
+    </div>
+
+    <div class="settings-group">
+      <label class="settings-switch">
+        <input type="checkbox" id="reduceMotionToggle" />
+        <span class="settings-slider"></span>
+        <span class="settings-label">Réduire les animations</span>
+      </label>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container header-content">
+      <div class="brand">
+        <span class="brand-logo">Ynov</span>
+        <div class="brand-text">
+          <span class="brand-name">B1 Informatique</span>
+          <span class="brand-role">Développement Web & Interfaces</span>
+        </div>
+      </div>
+      <nav class="site-nav">
+        <a href="#hero">Accueil</a>
+        <a href="#about">À propos</a>
+        <a href="#skills">Compétences</a>
+        <a href="#story">Story</a>
+        <a href="#projects">Projets</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <a href="#contact" class="nav-cta btn-primary btn-magnetic">Travailler ensemble</a>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section id="hero" class="section hero reveal" data-stagger>
+      <div class="container hero-grid">
+        <div class="hero-left">
+          <p class="hero-kicker">Développeur web créatif</p>
+          <h2>
+            Je crée des expériences numériques
+            <span class="accent">interactives</span> et
+            <span class="accent">dynamiques</span>.
+          </h2>
+          <p class="hero-subtitle">
+            <span id="typewriter"></span><span class="typewriter-cursor">|</span>
+          </p>
+
+          <div class="hero-actions">
+            <a href="#projects" class="btn-primary btn-magnetic">Voir mes projets</a>
+            <a href="#about" class="btn-ghost btn-magnetic">En savoir plus</a>
+            <a href="assets/cv.pdf" download class="btn-cv btn-magnetic">Télécharger mon CV</a>
+          </div>
+
+          <div class="hero-stats">
+            <div class="stat-card tilt-card bubble-hover">
+              <span class="stat-label">Projets réalisés</span>
+              <span class="stat-value">+10</span>
+            </div>
+            <div class="stat-card tilt-card bubble-hover">
+              <span class="stat-label">Années d'apprentissage</span>
+              <span class="stat-value">1</span>
+            </div>
+            <div class="stat-card tilt-card bubble-hover">
+              <span class="stat-label">Focus</span>
+              <span class="stat-value">Programmation</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-right">
+          <div class="hero-orbit">
+            <div class="hero-card tilt-card">
+              <p class="hero-card-title">Stack principale</p>
+              <ul>
+                <li>- HTML5 (structure, accessibilité)</li>
+                <li>- CSS3 avancé (Grid, Animations)</li>
+                <li>- JavaScript (DOM, Canvas, localStorage)</li>
+                <li>- Go (programmation backend et outils)</li>
+                <li>- Git / GitHub</li>
+              </ul>
+            </div>
+            <div class="hero-badge hero-badge-top bubble-hover">
+              🎨 Micro-interactions
+            </div>
+            <div class="hero-badge hero-badge-bottom bubble-hover">
+              ⚡ Canvas animé
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Indicateur scroll -->
+      <div class="scroll-indicator">
+        <div class="scroll-mouse"><span></span></div>
+        <p>Scroll</p>
+      </div>
+    </section>
+
+    <!-- Compteur visites -->
+    <section class="visit-strip">
+      <div class="container">
+        <p>
+          Visites sur ce navigateur :
+          <span id="visitCount">0</span>
+        </p>
+      </div>
+    </section>
+
+    <!-- À propos -->
+    <section id="about" class="section reveal" data-stagger>
+      <div class="container about-grid">
+        <div>
+          <h2>À propos</h2>
+          <p>
+            Étudiant en informatique à Ynov, je m’intéresse autant aux interfaces web qu’à la programmation pure (Go, JavaScript).
+J’aime creer, tester, animer et donner vie à des projets numériques. Ce portfolio présente mes réalisations et mon évolution technique.
+          </p>
+          <p>
+            L'objectif : maîtriser HTML, CSS et JavaScript, comprendre les bonnes pratiques
+            et être capable de concevoir des interfaces à forte valeur ajoutée visuelle.
+          </p>
+        </div>
+        <div class="about-panel tilt-card bubble-hover">
+          <h3>Ce que j'aime concevoir</h3>
+          <ul>
+            <li>Interfaces avec canvas animé en fond</li>
+            <li>Micro-interactions survol / clic (hover/ripple)</li>
+            <li>Design responsive clair et bien structuré</li>
+            <li>Portfolios et landing pages animés</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Compétences -->
+    <section id="skills" class="section section-alt reveal" data-stagger>
+      <div class="container">
+        <h2>Compétences</h2>
+        <p class="section-intro">
+          Les barres se remplissent automatiquement quand tu arrives dans cette section.
+        </p>
+
+        <div class="skills-grid">
+          <div class="skill-card tilt-card bubble-hover">
+            <div class="skill-header">
+              <span class="skill-icon">🧱</span>
+              <h3>HTML</h3>
+            </div>
+            <p>Structure HTML propre et organisée</p>
+            <div class="skill-bar" data-level="85"><span></span></div>
+          </div>
+
+          <div class="skill-card tilt-card bubble-hover">
+            <div class="skill-header">
+              <span class="skill-icon">🎨</span>
+              <h3>CSS</h3>
+            </div>
+            <p>Flex, Grid, animations, effets de verre, responsive complet.</p>
+            <div class="skill-bar" data-level="80"><span></span></div>
+          </div>
+
+          <div class="skill-card tilt-card bubble-hover">
+            <div class="skill-header">
+              <span class="skill-icon">⚙️</span>
+              <h3>JavaScript</h3>
+            </div>
+            <p>JavaScript : interactions, carrousel, filtres, animations et stockage local</p>
+            <div class="skill-bar" data-level="75"><span></span></div>
+          </div>
+
+          <div class="skill-card tilt-card bubble-hover">
+            <div class="skill-header">
+              <span class="skill-icon">🧰</span>
+              <h3>Outils</h3>
+            </div>
+            <p>VS Code, Git, organisation de projet front-end.</p>
+            <div class="skill-bar" data-level="70"><span></span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- STORY / PARCOURS -->
+    <section id="story" class="section reveal" data-stagger>
+      <div class="container">
+        <h2>Story</h2>
+        <p class="section-intro">
+          Mode "story" : une timeline simple pour présenter mon évolution et mes objectifs.
+        </p>
+
+        <div class="story-grid">
+          <div class="story-steps">
+            <button class="story-step active" data-step="0">Débuts</button>
+            <button class="story-step" data-step="1">Premier projet</button>
+            <button class="story-step" data-step="2">Focus</button>
+            <button class="story-step" data-step="3">Objectifs</button>
+          </div>
+
+          <div class="story-content tilt-card">
+            <span class="story-tag" id="storyTag">Étape 1/4</span>
+            <h3 id="storyTitle">Débuts</h3>
+            <p id="storyText">
+              Je découvre le développement web et les bases de HTML, CSS et JavaScript à Ynov Campus de Aix.
+            </p>
+            <ul id="storyHighlights" class="story-highlights">
+              <li>Compréhension de la structure d'une page web.</li>
+              <li>Premières pages statiques en HTML/CSS.</li>
+              <li>Découverte des outils (VS Code, navigateur, DevTools).</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projets -->
+    <section id="projects" class="section reveal" data-stagger>
+      <div class="container">
+        <h2>Projets</h2>
+        <p class="section-intro">
+          Filtre les projets par catégorie, puis clique sur une carte pour voir les détails.
+        </p>
+
+        <!-- Filtres -->
+        <div class="project-filters">
+          <button class="filter-btn active btn-magnetic" data-filter="all">Tous</button>
+          <button class="filter-btn btn-magnetic" data-filter="web">Web</button>
+          <button class="filter-btn btn-magnetic" data-filter="js">JavaScript</button>
+          <button class="filter-btn btn-magnetic" data-filter="design">Design</button>
+        </div>
+
+        <!-- Grille projets -->
+        <div class="project-grid">
+          <article
+            class="project-card tilt-card bubble-hover"
+            data-category="web"
+            data-title="Landing Page"
+            data-tech="HTML • CSS"
+            data-description="Site vitrine moderne avec sections, CTA, mise en page responsive et animations au scroll."
+            data-link="https://github.com/Slypot13/Landing-Page"
+          >
+            <span class="project-tag">Web</span>
+            <h3>Landing Page</h3>
+            <p>Une page vitrine animée pour la marque Lamborghini.</p>
+          </article>
+
+          <article
+            class="project-card tilt-card bubble-hover"
+            data-category="js"
+            data-title="Jeu en JavaScript"
+            data-tech="HTML • CSS • JS"
+            data-description="Mini jeu interactif avec gestion de score, messages de victoire et interactions."
+            data-link="https://github.com/Slypot13/MiniJeu"
+          >
+            <span class="project-tag">JS</span>
+            <h3>Mini jeu JavaScript</h3>
+            <p>Un projet pour pratiquer les événements et la logique.</p>
+          </article>
+
+          <article
+            class="project-card tilt-card bubble-hover"
+            data-category="design"
+            data-title="Maquette UI"
+            data-tech="Design / Figma"
+            data-description="Maquette d'un Auto Classifier, sections structurées et CTA clairs."
+            data-link="#"
+          >
+            <span class="project-tag">UI</span>
+            <h3>Maquette UI  D'un AutoClassifier</h3>
+            <p>Liaison entre Figma et Vs Code avec documentations.</p>
+          </article>
+
+          <article
+            class="project-card tilt-card bubble-hover"
+            data-category="web"
+            data-title="Boutique personnel"
+            data-tech="HTML • CSS • JS"
+            data-description="Structure de boutique avec articles, catégories, navigation et base pour futurs ajouts."
+            data-link="https://github.com/Slypot13/WebTools"
+          >
+            <span class="project-tag">Web</span>
+            <h3>Boutique personnel</h3>
+            <p>Structure d'un site pour boutique.</p>
+          </article>
+        </div>
+
+        <!-- Carrousel -->
+        <div class="project-carousel">
+          <button class="carousel-btn btn-magnetic" id="prevProject" aria-label="Projet précédent">◀</button>
+          <div class="carousel-track">
+            <div class="carousel-item active">
+              <h3>Portfolio animé</h3>
+              <p>Ce site : canvas de fond, animations, micro-interactions, filtrage, carrousel, formulaire, etc.</p>
+            </div>
+            <div class="carousel-item">
+              <h3>Parcours java </h3>
+              <p>Parcours java terminée avec de multiples exercices plus ou moins complexe (+ de 50 exercices).</p>
+            </div>
+            <div class="carousel-item">
+              <h3>Parcours Go</h3>
+              <p>Parcours golang terminée avec de multiples exercices plus ou moins complexe (+ de 50 exercices).</p>
+            </div>
+          </div>
+          <button class="carousel-btn btn-magnetic" id="nextProject" aria-label="Projet suivant">▶</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Modal projet -->
+    <div id="projectModal" class="modal">
+      <div class="modal-backdrop"></div>
+      <div class="modal-content tilt-card">
+        <button class="modal-close" id="modalCloseBtn" aria-label="Fermer">✕</button>
+        <span id="modalTech" class="modal-tech"></span>
+        <h3 id="modalTitle"></h3>
+        <p id="modalDescription"></p>
+        <a
+          id="modalLink"
+          href="#"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="btn-primary btn-magnetic modal-link"
+        >
+          Ouvrir le projet
+        </a>
+      </div>
+    </div>
+
+    <!-- ================== MINI JEU ================== -->
+<section id="mini-game" class="section reveal" data-stagger>
+  <div class="container">
+    <h2>Mini-jeu interactif</h2>
+    <p class="section-intro">
+      Un petit jeu en JavaScript pour montrer mes compétences en logique, DOM et interactions.
+    </p>
+
+    <div class="mini-game-card">
+      <h3>Jeu : Tape la case !</h3>
+      <p class="game-rules">
+        Clique sur la <strong>case verte</strong> le plus vite possible avant la fin du temps.
+      </p>
+
+      <div class="mini-game-info">
+        <span>Score : <span id="mg-score">0</span></span>
+        <span>Temps : <span id="mg-time">20</span>s</span>
+      </div>
+
+      <button id="mg-start" class="btn">Lancer la partie</button>
+
+      <div class="mini-grid" id="mg-grid">
+        <div class="mini-cell" data-index="0"></div>
+        <div class="mini-cell" data-index="1"></div>
+        <div class="mini-cell" data-index="2"></div>
+        <div class="mini-cell" data-index="3"></div>
+        <div class="mini-cell" data-index="4"></div>
+        <div class="mini-cell" data-index="5"></div>
+        <div class="mini-cell" data-index="6"></div>
+        <div class="mini-cell" data-index="7"></div>
+        <div class="mini-cell" data-index="8"></div>
+      </div>
+
+      <p id="mg-message" class="mini-game-message"></p>
+    </div>
+  </div>
+</section>
+<!-- =============================================== -->
+
+
+    <!-- Contact -->
+    <section id="contact" class="section section-alt reveal" data-stagger>
+      <div class="container">
+        <h2>Contact</h2>
+        <p class="section-intro">
+          Un stage, une alternance, un projet ou une collaboration ? Tu peux m’écrire directement ici.
+        </p>
+
+        <form id="contactForm" novalidate>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="name">Nom</label>
+              <input type="text" id="name" name="name" required />
+              <span class="error-message" id="nameError"></span>
+            </div>
+
+            <div class="form-group">
+              <label for="email">E-mail</label>
+              <input type="email" id="email" name="email" required />
+              <span class="error-message" id="emailError"></span>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="topic">Sujet</label>
+            <select id="topic" name="topic">
+              <option value="stage">Stage / alternance</option>
+              <option value="projet">Projet web</option>
+              <option value="autre">Autre</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" rows="5" required></textarea>
+            <span class="error-message" id="messageError"></span>
+          </div>
+
+          <button type="submit" class="btn-primary btn-magnetic">Envoyer</button>
+          <p class="form-status" id="formStatus"></p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>© <span id="year"></span> Portfolio B1 Info Ynov – Tous droits réservés.</p>
+    </div>
+  </footer>
+
+  <!-- Bouton retour haut -->
+  <button id="scrollTopBtn" class="scroll-top-btn" aria-label="Retour en haut">↑</button>
+
+  <script src="script.js"></script>
+</body>
+</html>
