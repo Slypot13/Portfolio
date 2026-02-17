@@ -1,20 +1,16 @@
 package temps
 
 import (
-	"embed"
-	"io/fs"
+	"html/template"
 	"log"
 )
 
-//go:embed index.html
-var content embed.FS
-
-var HtmlContent []byte
+var Temps *template.Template
 
 func InitTemps() {
-	var err error
-	HtmlContent, err = fs.ReadFile(content, "index.html")
-	if err != nil {
-		log.Fatal("Failed to load index.html template:", err)
-	}
+	   var err error
+    Temps, err = template.ParseGlob("src/temps/*.html")
+    if err != nil {
+        log.Fatalf("Erreur lors du parsing des templates : %v", err)
+    }
 }

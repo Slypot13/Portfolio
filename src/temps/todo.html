@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ma Todo List</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/todo.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Mes Tâches</h1>
+
+        <form action="/todo/add" method="POST">
+            <input type="text" name="title" placeholder="Nouvelle tâche..." required>
+            <button type="submit">Ajouter</button>
+        </form>
+
+        <ul>
+            {{range .}}
+            <li>
+                <span class="{{if .Done}}done{{end}}">{{.Title}}</span>
+                <div class="actions">
+                    <form action="/todo/toggle" method="POST">
+                        <input type="hidden" name="id" value="{{.ID}}">
+                        <button type="submit" class="btn-link">{{if .Done}}Rétablir{{else}}Terminer{{end}}</button>
+                    </form>
+                    <form action="/todo/delete" method="POST">
+                        <input type="hidden" name="id" value="{{.ID}}">
+                        <button type="submit" class="btn-link btn-danger">Supprimer</button>
+                    </form>
+                </div>
+            </li>
+            {{else}}
+            <li>Aucune tâche pour le moment.</li>
+            {{end}}
+        </ul>
+
+        <p class="back-link"><a href="/">Retour à l'accueil</a></p>
+    </div>
+</body>
+
+</html>

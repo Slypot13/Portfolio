@@ -1,0 +1,158 @@
+/* Global Styles */
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #121212;
+    color: #e0e0e0;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+h1, h2 {
+    color: #ffffff;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+a {
+    color: #bb86fc;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+a:hover {
+    color: #cf6679;
+}
+
+/* Container */
+.container, .login-container {
+    background-color: #1e1e1e;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    width: 90%;
+    max-width: 500px;
+}
+
+/* Forms */
+form {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+input[type="text"], input[type="password"] {
+    flex: 1;
+    padding: 12px;
+    border: 1px solid #333;
+    border-radius: 6px;
+    background-color: #2c2c2c;
+    color: #fff;
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+input[type="text"]:focus, input[type="password"]:focus {
+    border-color: #bb86fc;
+}
+
+button {
+    padding: 12px 20px;
+    background-color: #bb86fc;
+    color: #000;
+    border: none;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+button:hover {
+    background-color: #a370f7;
+    transform: translateY(-2px);
+}
+
+button:active {
+    transform: translateY(0);
+}
+
+/* List Items */
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+li {
+    background-color: #2c2c2c;
+    margin-bottom: 10px;
+    padding: 15px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: transform 0.2s;
+}
+
+li:hover {
+    transform: translateX(5px);
+}
+
+li span {
+    font-size: 1.1rem;
+}
+
+li span.done {
+    text-decoration: line-through;
+    color: #777;
+}
+
+/* Action Buttons */
+.actions {
+    display: flex;
+    gap: 10px;
+}
+
+.actions form {
+    margin: 0;
+}
+
+.btn-link {
+    background: none;
+    border: 1px solid #bb86fc;
+    color: #bb86fc;
+    padding: 6px 12px;
+    font-size: 0.8rem;
+}
+
+.btn-link:hover {
+    background-color: #bb86fc;
+    color: #000;
+}
+
+.btn-danger {
+    border-color: #cf6679;
+    color: #cf6679;
+}
+
+.btn-danger:hover {
+    background-color: #cf6679;
+    color: #000;
+}
+
+/* Utility */
+.error {
+    color: #cf6679;
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.back-link {
+    text-align: center;
+    display: block;
+    margin-top: 2rem;
+    font-size: 0.9rem;
+}

@@ -1,6 +1,7 @@
-
+{{define "index"}}
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -9,13 +10,12 @@
   <!-- Google Font -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
-    rel="stylesheet"
-  />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet" />
 
   <link rel="stylesheet" href="style.css" />
 </head>
+
 <body>
   <!-- Canvas de fond ultra animé -->
   <canvas id="bgCanvas"></canvas>
@@ -48,7 +48,7 @@
       </div>
 
       <button id="introSkipBtn" class="btn-primary intro-btn">
-        Entrer 
+        Entrer
       </button>
     </div>
   </div>
@@ -68,11 +68,7 @@
   <button class="theme-toggle" id="themeToggle" aria-label="Changer de thème">🌙</button>
 
   <!-- Bouton paramètres + panneau -->
-  <button
-    id="settingsToggle"
-    class="settings-toggle"
-    aria-label="Paramètres d'affichage"
-  >
+  <button id="settingsToggle" class="settings-toggle" aria-label="Paramètres d'affichage">
     ⚙
   </button>
 
@@ -82,25 +78,13 @@
     <div class="settings-group">
       <p class="settings-title">Palette d'accent</p>
       <div class="settings-accents">
-        <button
-          class="accent-swatch active"
-          data-accent="indigo"
-          aria-label="Palette indigo"
-        >
+        <button class="accent-swatch active" data-accent="indigo" aria-label="Palette indigo">
           <span class="accent-dot accent-indigo"></span>
         </button>
-        <button
-          class="accent-swatch"
-          data-accent="teal"
-          aria-label="Palette teal"
-        >
+        <button class="accent-swatch" data-accent="teal" aria-label="Palette teal">
           <span class="accent-dot accent-teal"></span>
         </button>
-        <button
-          class="accent-swatch"
-          data-accent="sunset"
-          aria-label="Palette sunset"
-        >
+        <button class="accent-swatch" data-accent="sunset" aria-label="Palette sunset">
           <span class="accent-dot accent-sunset"></span>
         </button>
       </div>
@@ -131,6 +115,7 @@
         <a href="#skills">Compétences</a>
         <a href="#story">Story</a>
         <a href="#projects">Projets</a>
+        <a href="/todo">Todo App</a>
         <a href="#contact">Contact</a>
       </nav>
       <a href="#contact" class="nav-cta btn-primary btn-magnetic">Travailler ensemble</a>
@@ -219,8 +204,10 @@
         <div>
           <h2>À propos</h2>
           <p>
-            Étudiant en informatique à Ynov, je m’intéresse autant aux interfaces web qu’à la programmation pure (Go, JavaScript).
-J’aime creer, tester, animer et donner vie à des projets numériques. Ce portfolio présente mes réalisations et mon évolution technique.
+            Étudiant en informatique à Ynov, je m’intéresse autant aux interfaces web qu’à la programmation pure (Go,
+            JavaScript).
+            J’aime creer, tester, animer et donner vie à des projets numériques. Ce portfolio présente mes réalisations
+            et mon évolution technique.
           </p>
           <p>
             L'objectif : maîtriser HTML, CSS et JavaScript, comprendre les bonnes pratiques
@@ -337,53 +324,36 @@ J’aime creer, tester, animer et donner vie à des projets numériques. Ce port
 
         <!-- Grille projets -->
         <div class="project-grid">
-          <article
-            class="project-card tilt-card bubble-hover"
-            data-category="web"
-            data-title="Landing Page"
+          <article class="project-card tilt-card bubble-hover" data-category="web" data-title="Landing Page"
             data-tech="HTML • CSS"
             data-description="Site vitrine moderne avec sections, CTA, mise en page responsive et animations au scroll."
-            data-link="https://github.com/Slypot13/Landing-Page"
-          >
+            data-link="https://github.com/Slypot13/Landing-Page">
             <span class="project-tag">Web</span>
             <h3>Landing Page</h3>
             <p>Une page vitrine animée pour la marque Lamborghini.</p>
           </article>
 
-          <article
-            class="project-card tilt-card bubble-hover"
-            data-category="js"
-            data-title="Jeu en JavaScript"
+          <article class="project-card tilt-card bubble-hover" data-category="js" data-title="Jeu en JavaScript"
             data-tech="HTML • CSS • JS"
             data-description="Mini jeu interactif avec gestion de score, messages de victoire et interactions."
-            data-link="https://github.com/Slypot13/MiniJeu"
-          >
+            data-link="https://github.com/Slypot13/MiniJeu">
             <span class="project-tag">JS</span>
             <h3>Mini jeu JavaScript</h3>
             <p>Un projet pour pratiquer les événements et la logique.</p>
           </article>
 
-          <article
-            class="project-card tilt-card bubble-hover"
-            data-category="design"
-            data-title="Maquette UI"
+          <article class="project-card tilt-card bubble-hover" data-category="design" data-title="Maquette UI"
             data-tech="Design / Figma"
-            data-description="Maquette d'un Auto Classifier, sections structurées et CTA clairs."
-            data-link="#"
-          >
+            data-description="Maquette d'un Auto Classifier, sections structurées et CTA clairs." data-link="#">
             <span class="project-tag">UI</span>
-            <h3>Maquette UI  D'un AutoClassifier</h3>
+            <h3>Maquette UI D'un AutoClassifier</h3>
             <p>Liaison entre Figma et Vs Code avec documentations.</p>
           </article>
 
-          <article
-            class="project-card tilt-card bubble-hover"
-            data-category="web"
-            data-title="Boutique personnel"
+          <article class="project-card tilt-card bubble-hover" data-category="web" data-title="Boutique personnel"
             data-tech="HTML • CSS • JS"
             data-description="Structure de boutique avec articles, catégories, navigation et base pour futurs ajouts."
-            data-link="https://github.com/Slypot13/WebTools"
-          >
+            data-link="https://github.com/Slypot13/WebTools">
             <span class="project-tag">Web</span>
             <h3>Boutique personnel</h3>
             <p>Structure d'un site pour boutique.</p>
@@ -420,56 +390,51 @@ J’aime creer, tester, animer et donner vie à des projets numériques. Ce port
         <span id="modalTech" class="modal-tech"></span>
         <h3 id="modalTitle"></h3>
         <p id="modalDescription"></p>
-        <a
-          id="modalLink"
-          href="#"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="btn-primary btn-magnetic modal-link"
-        >
+        <a id="modalLink" href="#" target="_blank" rel="noopener noreferrer"
+          class="btn-primary btn-magnetic modal-link">
           Ouvrir le projet
         </a>
       </div>
     </div>
 
     <!-- ================== MINI JEU ================== -->
-<section id="mini-game" class="section reveal" data-stagger>
-  <div class="container">
-    <h2>Mini-jeu interactif</h2>
-    <p class="section-intro">
-      Un petit jeu en JavaScript pour montrer mes compétences en logique, DOM et interactions.
-    </p>
+    <section id="mini-game" class="section reveal" data-stagger>
+      <div class="container">
+        <h2>Mini-jeu interactif</h2>
+        <p class="section-intro">
+          Un petit jeu en JavaScript pour montrer mes compétences en logique, DOM et interactions.
+        </p>
 
-    <div class="mini-game-card">
-      <h3>Jeu : Tape la case !</h3>
-      <p class="game-rules">
-        Clique sur la <strong>case verte</strong> le plus vite possible avant la fin du temps.
-      </p>
+        <div class="mini-game-card">
+          <h3>Jeu : Tape la case !</h3>
+          <p class="game-rules">
+            Clique sur la <strong>case verte</strong> le plus vite possible avant la fin du temps.
+          </p>
 
-      <div class="mini-game-info">
-        <span>Score : <span id="mg-score">0</span></span>
-        <span>Temps : <span id="mg-time">20</span>s</span>
+          <div class="mini-game-info">
+            <span>Score : <span id="mg-score">0</span></span>
+            <span>Temps : <span id="mg-time">20</span>s</span>
+          </div>
+
+          <button id="mg-start" class="btn">Lancer la partie</button>
+
+          <div class="mini-grid" id="mg-grid">
+            <div class="mini-cell" data-index="0"></div>
+            <div class="mini-cell" data-index="1"></div>
+            <div class="mini-cell" data-index="2"></div>
+            <div class="mini-cell" data-index="3"></div>
+            <div class="mini-cell" data-index="4"></div>
+            <div class="mini-cell" data-index="5"></div>
+            <div class="mini-cell" data-index="6"></div>
+            <div class="mini-cell" data-index="7"></div>
+            <div class="mini-cell" data-index="8"></div>
+          </div>
+
+          <p id="mg-message" class="mini-game-message"></p>
+        </div>
       </div>
-
-      <button id="mg-start" class="btn">Lancer la partie</button>
-
-      <div class="mini-grid" id="mg-grid">
-        <div class="mini-cell" data-index="0"></div>
-        <div class="mini-cell" data-index="1"></div>
-        <div class="mini-cell" data-index="2"></div>
-        <div class="mini-cell" data-index="3"></div>
-        <div class="mini-cell" data-index="4"></div>
-        <div class="mini-cell" data-index="5"></div>
-        <div class="mini-cell" data-index="6"></div>
-        <div class="mini-cell" data-index="7"></div>
-        <div class="mini-cell" data-index="8"></div>
-      </div>
-
-      <p id="mg-message" class="mini-game-message"></p>
-    </div>
-  </div>
-</section>
-<!-- =============================================== -->
+    </section>
+    <!-- =============================================== -->
 
 
     <!-- Contact -->
@@ -528,4 +493,7 @@ J’aime creer, tester, animer et donner vie à des projets numériques. Ce port
 
   <script src="script.js"></script>
 </body>
+
 </html>
+
+{{end}}

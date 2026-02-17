@@ -1,14 +1,20 @@
 package main
 
 import (
+	"portfolio/src/controller"
 	"portfolio/src/router"
 	"portfolio/src/temps"
+
+	"github.com/joho/godotenv"
 )
 
 func main() {
-	// Initialize templates
+	err := godotenv.Load()
+	if err != nil {
+		println("No .env file found")
+	}
+	controller.InitDB()
 	temps.InitTemps()
 
-	// Initialize and start server
 	router.InitServ()
 }
